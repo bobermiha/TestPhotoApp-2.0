@@ -15,14 +15,25 @@ class MainCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .yellow
+        collectionView.setCollectionViewLayout(genetateLayout(), animated: false)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    private func genetateLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupeSize = NSCollectionLayoutSize(widthDimension: .absolute(100.0), heightDimension: .absolute(100.0))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupeSize, subitem: item, count: 1)
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
 
     /*

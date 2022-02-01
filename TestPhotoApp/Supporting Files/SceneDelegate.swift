@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         let tabBar = UITabBarController()
-        let mainVC = MainCollectionViewController()
+        let mainVC = MainCollectionViewController(collectionViewLayout: UICollectionViewLayout())
         let secondVC = SecondTableViewController()
         mainVC.tabBarItem = UITabBarItem(title: "Photos", image: UIImage(systemName: "photo.on.rectangle.angled"), tag: 0)
         secondVC.tabBarItem = UITabBarItem(title: "Favorit", image: UIImage(systemName: "heart.fill"), tag: 1)
