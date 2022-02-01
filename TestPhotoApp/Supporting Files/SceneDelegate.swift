@@ -14,6 +14,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: windowScene)
+        let tabBar = UITabBarController()
+        let mainVC = MainCollectionViewController()
+        let secondVC = SecondTableViewController()
+        mainVC.tabBarItem = UITabBarItem(title: "Photos", image: UIImage(systemName: "photo.on.rectangle.angled"), tag: 0)
+        secondVC.tabBarItem = UITabBarItem(title: "Favorit", image: UIImage(systemName: "heart.fill"), tag: 1)
+        tabBar.setViewControllers([UINavigationController(rootViewController: mainVC), UINavigationController(rootViewController: secondVC)], animated: false)
+        window.rootViewController = tabBar
+        window.makeKeyAndVisible()
+        self.window = window
         
     }
 
