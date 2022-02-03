@@ -7,31 +7,32 @@
 
 import Foundation
 
-struct RequestResults: Codable {
+struct RequestResuls: Codable {
     let total: Int
     let results: [PhotosData]
 }
 
 struct PhotosData: Codable {
-    let height: Int
-    let width: Int
-    let createdAt: Date
-    let urls: [URLTypes.RawValue : String]
-    let user: User
-    
-    
-    enum URLTypes: String {
-        case raw, full, regular, thumb, small
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case height, width
-        case createdAt = "created_at"
-        case user
-        case urls
-    }
+
+       let createdAt: Date?
+       let width: Int?
+       let height: Int?
+       let user: User
+       let urls: Urls
+
+       enum CodingKeys: String, CodingKey {
+           case createdAt = "created_at"
+           case width, height
+           case user
+           case urls
+       }
 }
 
 struct User: Codable {
     let username: String
+}
+
+struct Urls: Codable {
+    let raw, full, regular, small: String
+    let thumb: String
 }

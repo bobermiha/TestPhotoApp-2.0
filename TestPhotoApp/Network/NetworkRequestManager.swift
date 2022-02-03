@@ -10,13 +10,15 @@ import Foundation
 class NetworkRequestManager {
     
     func request(searchKeyWord: String, completion: @escaping (Data?, Error?) -> Void) {
-        let parameters = generateParameters(searchKeyWord: searchKeyWord)
-        let url = generateUrl(parameters: parameters)
+        
+        let parameters = self.generateParameters(searchKeyWord: searchKeyWord)
+        let url = self.generateUrl(parameters: parameters)
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = generateHeaders()
         request.httpMethod = "get"
         let dataTask = makeDataTask(from: request, completion: completion)
         dataTask.resume()
+        print(url)
         
     }
     
@@ -31,7 +33,7 @@ class NetworkRequestManager {
     }
     
     private func generateHeaders() -> [String: String]? {
-        var headers = [String:String]()
+        var headers = [String: String]()
         headers["Authorization"] = "Client-ID J_PW-ZivB6q24i-CwFA1DU0W_k2D0m-E82Rd5jAsHQo"
         return headers
     }
@@ -41,6 +43,7 @@ class NetworkRequestManager {
         parameters["query"] = searchKeyWord
         parameters["page"] = String(1)
         parameters["per_page"] = String(45)
+        parameters["client_id"] = "J_PW-ZivB6q24i-CwFA1DU0W_k2D0m-E82Rd5jAsHQo"
         return parameters
     }
     
@@ -49,7 +52,7 @@ class NetworkRequestManager {
         componets.scheme = "https"
         componets.host = "api.unsplash.com"
         componets.path = "/search/photos"
-        componets.queryItems = parameters.map {URLQueryItem(name: $0, value: $1)}
+        componets.queryItems = parameters.map { URLQueryItem(name: $0, value: $1) }
         return componets.url!
     }
     

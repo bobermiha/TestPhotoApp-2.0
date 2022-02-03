@@ -10,14 +10,12 @@ import Foundation
 
 class NetworkDataManager {
     
-    
     private var networkRequestManager = NetworkRequestManager()
     
-    
     func fetchImages(searchKeyWord: String, completion: @escaping (PhotosData?) -> ()) {
-        networkRequestManager.request(searchKeyWord: searchKeyWord) { data, error in
+        networkRequestManager.request(searchKeyWord: searchKeyWord) { (data, error) in
             if let error = error {
-                print(error.localizedDescription)
+                print("Error! Data was not received \(error.localizedDescription)")
                 completion(nil)
             }
             let decodedData = self.decodeJSON(type: PhotosData.self, from: data)
@@ -25,16 +23,15 @@ class NetworkDataManager {
         }
     }
     
-    func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
-        
+    func decodeJSON<T: Codable>(type: T.Type, from: Data?) -> T? {
         let decoder = JSONDecoder()
-        guard let data = from else { return nil}
+        guard let data = from else { return nil }
         
         do {
             let items = try decoder.decode(type.self, from: data)
             return items
-        }catch {
-            print(error.localizedDescription)
+        }catch let decodeError {
+            print("Decoding was failed", decodeError)
             return nil
         }
     }
