@@ -14,8 +14,7 @@ class FirstViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .yellow
         registerCell()
         setUpSearchBar()
 //        setUpNavigationController()
@@ -24,9 +23,6 @@ class FirstViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        
-        
-
     }
     
     
@@ -41,6 +37,7 @@ class FirstViewController: UICollectionViewController {
         searchConroller.searchBar.placeholder = "Search photo"
         searchConroller.obscuresBackgroundDuringPresentation = false
 //        searchConroller.searchResultsUpdater = self
+        searchConroller.searchBar.delegate = self
         navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchConroller
     }
@@ -50,14 +47,14 @@ class FirstViewController: UICollectionViewController {
 //        navigationApearance.configureWithOpaqueBackground()
 //        navigationApearance.titleTextAttributes = [.foregroundColor: UIColor.white]
 //        navigationApearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-//        
+//
 //        navigationApearance.backgroundColor = UIColor(
 //            red: 21/255,
 //            green: 101/255,
 //            blue: 191/255,
 //            alpha: 194/255
 //        )
-//        
+//
 //        navigationController?.navigationBar.standardAppearance = navigationApearance
 //        navigationController?.navigationBar.scrollEdgeAppearance = navigationApearance
 //        navigationController?.navigationBar.tintColor = .white
@@ -67,13 +64,11 @@ class FirstViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return 5
     }
 
@@ -83,7 +78,14 @@ class FirstViewController: UICollectionViewController {
         cell.backgroundColor = .green
         return cell
     }
+}
 
+
+// MARK: UISearchBarDelegate
+
+extension FirstViewController: UISearchBarDelegate {
     
-
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+    }
 }
