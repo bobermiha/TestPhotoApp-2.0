@@ -10,6 +10,8 @@ import UIKit
 private let reuseIdentifier = "PhotoItem"
 
 class FirstViewController: UICollectionViewController {
+    
+    private let nerworkManager = NetworkManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +88,8 @@ class FirstViewController: UICollectionViewController {
 extension FirstViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        nerworkManager.request(searchWord: searchText) { _, _ in
+            print("123")
+        }
     }
 }
