@@ -11,7 +11,7 @@ private let reuseIdentifier = "PhotoItem"
 
 class FirstViewController: UICollectionViewController {
     
-    private let nerworkManager = NetworkManager()
+    private var nerworkDataManager = NetworkDataManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,8 +88,10 @@ class FirstViewController: UICollectionViewController {
 extension FirstViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        nerworkManager.request(searchWord: searchText) { _, _ in
-            print("123")
+        nerworkDataManager.fetchImages(searchKeyWord: searchText) { (data) in
+            data.map { object in
+                print(object.urls["small"])
+            }
         }
     }
 }

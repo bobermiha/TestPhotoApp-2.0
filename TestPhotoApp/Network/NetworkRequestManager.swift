@@ -7,10 +7,10 @@
 
 import Foundation
 
-class NetworkManager {
+class NetworkRequestManager {
     
-    func request(searchWord: String, completion: @escaping (Data?, Error?) -> Void) {
-        let parameters = generateParameters(searchWord: searchWord)
+    func request(searchKeyWord: String, completion: @escaping (Data?, Error?) -> Void) {
+        let parameters = generateParameters(searchKeyWord: searchKeyWord)
         let url = generateUrl(parameters: parameters)
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = generateHeaders()
@@ -36,9 +36,9 @@ class NetworkManager {
         return headers
     }
     
-    private func generateParameters(searchWord: String?) -> [String: String]{
+    private func generateParameters(searchKeyWord: String?) -> [String: String]{
         var parameters = [String : String]()
-        parameters["query"] = searchWord
+        parameters["query"] = searchKeyWord
         parameters["page"] = String(1)
         parameters["per_page"] = String(45)
         return parameters
