@@ -16,6 +16,7 @@
 		F573BF3927A97C220044218A /* PhotoInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF3827A97C220044218A /* PhotoInfoTableViewCell.swift */; };
 		F573BF3B27A97C3E0044218A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF3A27A97C3E0044218A /* DetailViewController.swift */; };
 		F573BF3D27AACBE50044218A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF3C27AACBE40044218A /* MainTabBarController.swift */; };
+		F573BF3F27ABA9190044218A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF3E27ABA9190044218A /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F573BF3827A97C220044218A /* PhotoInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F573BF3A27A97C3E0044218A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F573BF3C27AACBE40044218A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		F573BF3E27ABA9190044218A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		F573BF3327A97B720044218A /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				F573BF3E27ABA9190044218A /* NetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				F573BF1C27A97B2A0044218A /* AppDelegate.swift in Sources */,
 				F573BF3727A97BF50044218A /* SecondViewController.swift in Sources */,
 				F573BF3527A97BE30044218A /* FirstViewController.swift in Sources */,
+				F573BF3F27ABA9190044218A /* NetworkManager.swift in Sources */,
 				F573BF3B27A97C3E0044218A /* DetailViewController.swift in Sources */,
 				F573BF1E27A97B2A0044218A /* SceneDelegate.swift in Sources */,
 				F573BF3927A97C220044218A /* PhotoInfoTableViewCell.swift in Sources */,
