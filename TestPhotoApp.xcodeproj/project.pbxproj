@@ -15,7 +15,7 @@
 		F573BF3727A97BF50044218A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF3627A97BF50044218A /* SecondViewController.swift */; };
 		F573BF3927A97C220044218A /* PhotoInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF3827A97C220044218A /* PhotoInfoTableViewCell.swift */; };
 		F573BF3B27A97C3E0044218A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF3A27A97C3E0044218A /* DetailViewController.swift */; };
-		F573BF3D27AACBE50044218A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF3C27AACBE40044218A /* MainViewController.swift */; };
+		F573BF3D27AACBE50044218A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF3C27AACBE40044218A /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		F573BF3627A97BF50044218A /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		F573BF3827A97C220044218A /* PhotoInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoTableViewCell.swift; sourceTree = "<group>"; };
 		F573BF3A27A97C3E0044218A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		F573BF3C27AACBE40044218A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F573BF3C27AACBE40044218A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +88,7 @@
 				F573BF3427A97BE30044218A /* FirstViewController.swift */,
 				F573BF3627A97BF50044218A /* SecondViewController.swift */,
 				F573BF3A27A97C3E0044218A /* DetailViewController.swift */,
-				F573BF3C27AACBE40044218A /* MainViewController.swift */,
+				F573BF3C27AACBE40044218A /* MainTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,7 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F573BF3D27AACBE50044218A /* MainViewController.swift in Sources */,
+				F573BF3D27AACBE50044218A /* MainTabBarController.swift in Sources */,
 				F573BF1C27A97B2A0044218A /* AppDelegate.swift in Sources */,
 				F573BF3727A97BF50044218A /* SecondViewController.swift in Sources */,
 				F573BF3527A97BE30044218A /* FirstViewController.swift in Sources */,

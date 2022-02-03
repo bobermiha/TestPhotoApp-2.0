@@ -14,11 +14,11 @@ class FirstViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "PHOTOS"
-        navigationController?.navigationBar.prefersLargeTitles = true
         
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .white
         registerCell()
+        setUpSearchBar()
+//        setUpNavigationController()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -26,7 +26,7 @@ class FirstViewController: UICollectionViewController {
         // Register cell classes
         
         
-        // Do any additional setup after loading the view.
+
     }
     
     
@@ -36,6 +36,32 @@ class FirstViewController: UICollectionViewController {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
+    private func setUpSearchBar(){
+        let searchConroller = UISearchController(searchResultsController: nil)
+        searchConroller.searchBar.placeholder = "Search photo"
+        searchConroller.obscuresBackgroundDuringPresentation = false
+//        searchConroller.searchResultsUpdater = self
+        navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.searchController = searchConroller
+    }
+    
+//    private func setUpNavigationController() {
+//        let navigationApearance = UINavigationBarAppearance()
+//        navigationApearance.configureWithOpaqueBackground()
+//        navigationApearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+//        navigationApearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+//        
+//        navigationApearance.backgroundColor = UIColor(
+//            red: 21/255,
+//            green: 101/255,
+//            blue: 191/255,
+//            alpha: 194/255
+//        )
+//        
+//        navigationController?.navigationBar.standardAppearance = navigationApearance
+//        navigationController?.navigationBar.scrollEdgeAppearance = navigationApearance
+//        navigationController?.navigationBar.tintColor = .white
+//    }
 
    
     // MARK: UICollectionViewDataSource
