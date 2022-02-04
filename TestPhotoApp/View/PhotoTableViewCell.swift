@@ -1,13 +1,13 @@
 //
-//  PhotoInfoTableViewCell.swift
+//  PhotoTableViewCell.swift
 //  TestPhotoApp
 //
-//  Created by Михаил Бобров on 01.02.2022.
+//  Created by Михаил Бобров on 04.02.2022.
 //
 
 import UIKit
 
-class PhotoInfoTableViewCell: UITableViewCell {
+class PhotoTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

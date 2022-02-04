@@ -6,13 +6,17 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SecondTableViewController: UITableViewController {
 
+    let ream = try! Realm()
+    var photos: Results<FavouritePhoto>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .red
+        tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "Cell")
+        view.backgroundColor = .white
     }
 
     // MARK: - Table view data source
@@ -22,12 +26,15 @@ class SecondTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        guard let photos = photos else {return 0}
+        return photos.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PhotoTableViewCell
+        let photo = photos[indexPath.row]
+        cell.textLabel?.text = photo.userName
         return cell
     }
 
