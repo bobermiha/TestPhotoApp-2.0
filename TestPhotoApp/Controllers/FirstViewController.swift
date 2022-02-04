@@ -13,27 +13,26 @@ class FirstViewController: UICollectionViewController {
     private var nerworkDataManager = NetworkDataManager()
     private var timer: Timer?
     private var photos = [PhotoData]()
+    private let itemPerRow = CGFloat(2)
+    private let sectionInsets = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = .yellow
-        registerCell()
+        collectionView.backgroundColor = .white
+        congfigureCollectionView()
         setUpSearchBar()
         title = "Photos"
         //        setUpNavigationController()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Register cell classes
     }
     
     
     // MARK: SetUp UI
     
-    private func registerCell() {
+    private func congfigureCollectionView() {
         self.collectionView!.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.reuseID)
+        collectionView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        collectionView.contentInsetAdjustmentBehavior = .automatic
     }
     
     private func setUpSearchBar(){
@@ -82,6 +81,15 @@ class FirstViewController: UICollectionViewController {
         cell.photo = photo
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! PhotosCollectionViewCell
+        guard let imageData = cell.photo else { return }
+        let detailVC = DetailViewController()
+        detailVC.photo = imageData
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
 }
 
 
@@ -106,4 +114,22 @@ extension FirstViewController: UISearchBarDelegate {
 // MARK: UICollectionViewDelegateFlowLayout
 
 extension FirstViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let photo = photos[indexPath.item]
+        let paddingSpace = sectionInsets.left * (itemPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemPerRow
+        let height = CGFloat(photo.height) * widthPerItem / CGFloat(photo.width)
+        return CGSize(width: widthPerItem, height: height)
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.right
+    }
 }
