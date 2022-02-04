@@ -13,6 +13,7 @@ class FirstViewController: UICollectionViewController {
     
     private var nerworkDataManager = NetworkDataManager()
     private var timer: Timer?
+    private var photos = [PhotoData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class FirstViewController: UICollectionViewController {
         collectionView.backgroundColor = .yellow
         registerCell()
         setUpSearchBar()
+        title = "Photos"
         //        setUpNavigationController()
         
         // Uncomment the following line to preserve selection between presentations
@@ -72,12 +74,12 @@ class FirstViewController: UICollectionViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return photos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        
+        let photo = photos[indexPath.item]
         cell.backgroundColor = .green
         return cell
     }
@@ -89,10 +91,11 @@ class FirstViewController: UICollectionViewController {
 extension FirstViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
-            self.nerworkDataManager.fetchImages(searchKeyWord: searchText) { [weak self] (searchResults) in
-                guard let fetchedPhotos = searchResults else { return }
-                print(fetchedPhotos.urls.raw)
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
+            self.nerworkDataManager.fetchImages(searchKeyWord: searchText) { [weak self] data in
+                guard let data = data else { return }
+                self?.photos = data.results
             }
         })
     }

@@ -18,8 +18,6 @@ class NetworkRequestManager {
         request.httpMethod = "get"
         let dataTask = makeDataTask(from: request, completion: completion)
         dataTask.resume()
-        print(url)
-        
     }
     
     // MARK: Private methods with settings for url request
@@ -43,7 +41,7 @@ class NetworkRequestManager {
         parameters["query"] = searchKeyWord
         parameters["page"] = String(1)
         parameters["per_page"] = String(45)
-        parameters["client_id"] = "J_PW-ZivB6q24i-CwFA1DU0W_k2D0m-E82Rd5jAsHQo"
+//        parameters["client_id"] = "J_PW-ZivB6q24i-CwFA1DU0W_k2D0m-E82Rd5jAsHQo"  one more way to add APIKey in request
         return parameters
     }
     

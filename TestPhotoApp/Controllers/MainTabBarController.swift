@@ -16,7 +16,8 @@ class MainTabBarController: UITabBarController {
         let secondViewConroller = SecondTableViewController()
         
         viewControllers = [
-            setUpNavigationController(title: "Photos",                                      image: UIImage(systemName: "photo.on.rectangle.angled"),
+            setUpNavigationController(title: "Photos",
+                                      image: UIImage(systemName: "photo.on.rectangle.angled"),
                                       rootViewController: firstViewController),
             setUpNavigationController(title: "Favourites",
                                       image: UIImage(systemName: "heart.fill"),

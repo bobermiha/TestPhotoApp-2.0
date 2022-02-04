@@ -19,6 +19,7 @@
 		F573BF3F27ABA9190044218A /* NetworkRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF3E27ABA9190044218A /* NetworkRequestManager.swift */; };
 		F573BF4127ABBBA30044218A /* NetworkDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF4027ABBBA30044218A /* NetworkDataManager.swift */; };
 		F573BF4327ABBBD90044218A /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF4227ABBBD90044218A /* PhotosModel.swift */; };
+		F573BF4527ACF1720044218A /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF4427ACF1720044218A /* PhotosCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F573BF3E27ABA9190044218A /* NetworkRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestManager.swift; sourceTree = "<group>"; };
 		F573BF4027ABBBA30044218A /* NetworkDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataManager.swift; sourceTree = "<group>"; };
 		F573BF4227ABBBD90044218A /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
+		F573BF4427ACF1720044218A /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			children = (
 				F573BF2627A97B2E0044218A /* LaunchScreen.storyboard */,
 				F573BF3827A97C220044218A /* PhotoInfoTableViewCell.swift */,
+				F573BF4427ACF1720044218A /* PhotosCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				F573BF3727A97BF50044218A /* SecondViewController.swift in Sources */,
 				F573BF3527A97BE30044218A /* FirstViewController.swift in Sources */,
 				F573BF3F27ABA9190044218A /* NetworkRequestManager.swift in Sources */,
+				F573BF4527ACF1720044218A /* PhotosCollectionViewCell.swift in Sources */,
 				F573BF3B27A97C3E0044218A /* DetailViewController.swift in Sources */,
 				F573BF4327ABBBD90044218A /* PhotosModel.swift in Sources */,
 				F573BF1E27A97B2A0044218A /* SceneDelegate.swift in Sources */,

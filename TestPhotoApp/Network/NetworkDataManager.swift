@@ -12,13 +12,13 @@ class NetworkDataManager {
     
     private var networkRequestManager = NetworkRequestManager()
     
-    func fetchImages(searchKeyWord: String, completion: @escaping (PhotosData?) -> ()) {
+    func fetchImages(searchKeyWord: String, completion: @escaping (RequestResults?) -> ()) {
         networkRequestManager.request(searchKeyWord: searchKeyWord) { (data, error) in
             if let error = error {
                 print("Error! Data was not received \(error.localizedDescription)")
                 completion(nil)
             }
-            let decodedData = self.decodeJSON(type: PhotosData.self, from: data)
+            let decodedData = self.decodeJSON(type: RequestResults.self, from: data)
             completion(decodedData)
         }
     }
