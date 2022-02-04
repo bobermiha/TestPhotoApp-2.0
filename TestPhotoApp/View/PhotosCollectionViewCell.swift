@@ -5,14 +5,18 @@
 //  Created by Михаил Бобров on 04.02.2022.
 //
 
+import SDWebImage
 import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = "PhotoItem"
+    
     var photo: PhotoData! {
         didSet {
             let photoUrl = photo.urls["regular"]
+            guard let imageURL = photoUrl, let url = URL(string: imageURL) else { return }
+            imageView.sd_setImage(with: url, completed: nil)
         }
     }
     

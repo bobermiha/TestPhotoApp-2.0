@@ -7,7 +7,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "PhotoItem"
 
 class FirstViewController: UICollectionViewController {
     
@@ -34,7 +33,7 @@ class FirstViewController: UICollectionViewController {
     // MARK: SetUp UI
     
     private func registerCell() {
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.reuseID)
     }
     
     private func setUpSearchBar(){
@@ -78,9 +77,9 @@ class FirstViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.reuseID, for: indexPath) as! PhotosCollectionViewCell
         let photo = photos[indexPath.item]
-        cell.backgroundColor = .green
+        cell.photo = photo
         return cell
     }
 }
@@ -96,7 +95,15 @@ extension FirstViewController: UISearchBarDelegate {
             self.nerworkDataManager.fetchImages(searchKeyWord: searchText) { [weak self] data in
                 guard let data = data else { return }
                 self?.photos = data.results
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
             }
         })
     }
+}
+
+// MARK: UICollectionViewDelegateFlowLayout
+
+extension FirstViewController: UICollectionViewDelegateFlowLayout {
 }
