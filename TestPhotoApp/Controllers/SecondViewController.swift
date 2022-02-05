@@ -10,15 +10,24 @@ import RealmSwift
 
 class SecondTableViewController: UITableViewController {
 
-    let ream = try! Realm()
+    let realm = try! Realm()
     var photos: Results<FavouritePhoto>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "Cell")
         view.backgroundColor = .white
+        loadPhotos()
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadPhotos()
+    }
+    private func loadPhotos() {
+        photos = realm.objects(FavouritePhoto.self)
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
