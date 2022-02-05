@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
         let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.backgroundColor = UIColor(red: 255 / 255, green: 249 / 255, blue: 249 / 255, alpha: 1.0)
-        photo.contentMode = .scaleAspectFit
+        photo.contentMode = .scaleToFill
         return photo
     }()
     
@@ -110,15 +110,15 @@ class DetailViewController: UIViewController {
     private func setUPImageView() {
         view.addSubview(imageView)
         imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/3).isActive = true
         
     }
     
     private func setUpUsernameLabel(){
         view.addSubview(usernameLabel)
-        usernameLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
+        usernameLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 16).isActive = true
         usernameLabel.widthAnchor.constraint(greaterThanOrEqualTo: imageView.widthAnchor, multiplier: 1/3).isActive = true
         usernameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15).isActive = true
         usernameLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
@@ -127,7 +127,7 @@ class DetailViewController: UIViewController {
     private func setUpCreatedAtLabel() {
         view.addSubview(createdAtLabel)
         createdAtLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15).isActive = true
-        createdAtLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor).isActive = true
+        createdAtLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -15).isActive = true
         createdAtLabel.widthAnchor.constraint(greaterThanOrEqualTo: imageView.widthAnchor, multiplier: 1/3).isActive = true
         createdAtLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
