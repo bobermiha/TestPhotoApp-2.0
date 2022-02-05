@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import RealmSwift
+import SwiftUI
 
 class DetailViewController: UIViewController {
     
@@ -15,7 +16,7 @@ class DetailViewController: UIViewController {
     
     private var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "YY/MMM/dd"
+        formatter.dateFormat = "dd/MM/yyyy"
         return formatter
     }()
     
@@ -24,8 +25,8 @@ class DetailViewController: UIViewController {
             let photoUrl = photo.urls["regular"]
             guard let imageURL = photoUrl, let url = URL(string: imageURL) else { return }
             imageView.sd_setImage(with: url, completed: nil)
-            title = "Author: \(photo.user.username)"
-            createdAtLabel.text = photo.createdAt
+            usernameLabel.text = "By: \(photo.user.username)"
+            createdAtLabel.text = "created at: \(dateFormatter.string(from: photo.createdAt))"
         }
     }
     
@@ -33,14 +34,23 @@ class DetailViewController: UIViewController {
         let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.backgroundColor = UIColor(red: 255 / 255, green: 249 / 255, blue: 249 / 255, alpha: 1.0)
-        photo.contentMode = .scaleAspectFill
+        photo.contentMode = .scaleAspectFit
         return photo
     }()
     
     private var createdAtLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Veranda", size: 20)
+        label.font = UIFont(name: "Apple SD Gothic Neo", size: 17)
+        label.textAlignment = .right
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private var usernameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Apple SD Gothic Neo", size: 17)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -63,14 +73,14 @@ class DetailViewController: UIViewController {
         setUPImageView()
         setUpCreatedAtLabel()
         setUpButton()
+        setUpUsernameLabel()
     }
     
     @objc private func likeButtonPressed() {
         let favouritePhoto = FavouritePhoto()
         favouritePhoto.userName = photo.user.username
+        favouritePhoto.createdAT = dateFormatter.string(from: photo.createdAt)
         favouritePhoto.photoUrl = photo.urls["small"]!
-        favouritePhoto.createdAT = photo.createdAt
-        
         do {
             try self.realm.write({
                 self.realm.add(favouritePhoto)
@@ -82,6 +92,7 @@ class DetailViewController: UIViewController {
         }
     }
     
+    // MARK: Allert Methods
     private func presentSuccessAlert() {
         let allertController = UIAlertController(title: "Photo was saved", message: "Your photo has been succesfully saved", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -95,21 +106,30 @@ class DetailViewController: UIViewController {
         allertController.addAction(okAction)
         present(allertController, animated: true, completion: nil)
     }
-    
+    // MARK: UI Configuration methods
     private func setUPImageView() {
         view.addSubview(imageView)
-        imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 2/3).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
-        imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/3).isActive = true
+        
+    }
+    
+    private func setUpUsernameLabel(){
+        view.addSubview(usernameLabel)
+        usernameLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
+        usernameLabel.widthAnchor.constraint(greaterThanOrEqualTo: imageView.widthAnchor, multiplier: 1/3).isActive = true
+        usernameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15).isActive = true
+        usernameLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
     
     private func setUpCreatedAtLabel() {
         view.addSubview(createdAtLabel)
-        createdAtLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 100).isActive = true
-        createdAtLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
-        createdAtLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
-        createdAtLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        createdAtLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15).isActive = true
+        createdAtLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor).isActive = true
+        createdAtLabel.widthAnchor.constraint(greaterThanOrEqualTo: imageView.widthAnchor, multiplier: 1/3).isActive = true
+        createdAtLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
     
    private func setUpButton() {

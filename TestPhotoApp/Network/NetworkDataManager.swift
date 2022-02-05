@@ -25,6 +25,7 @@ class NetworkDataManager {
     
     func decodeJSON<T: Codable>(type: T.Type, from: Data?) -> T? {
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
         guard let data = from else { return nil }
         
         do {

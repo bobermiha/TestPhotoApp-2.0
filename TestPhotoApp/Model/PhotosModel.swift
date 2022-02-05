@@ -17,7 +17,7 @@ struct PhotoData: Codable {
     let height: Int
     let urls: [URLType.RawValue:String]
     let user: User
-    let createdAt: String
+    let createdAt: Date
     
     enum URLType: String {
         case raw
