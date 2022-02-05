@@ -18,6 +18,7 @@ struct PhotoData: Codable {
     let urls: [URLType.RawValue:String]
     let user: User
     let createdAt: Date
+    var isFavourite: Bool = false
     
     enum URLType: String {
         case raw

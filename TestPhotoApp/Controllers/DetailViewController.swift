@@ -59,10 +59,7 @@ class DetailViewController: UIViewController {
     private var likeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Like me", for: .normal)
-        button.backgroundColor = .red
-        button.tintColor = .white
-        button.layer.cornerRadius = 15
+        button.tintColor = .systemBlue
         button.addTarget(self, action: #selector(likeButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -74,38 +71,79 @@ class DetailViewController: UIViewController {
         setUpCreatedAtLabel()
         setUpButton()
         setUpUsernameLabel()
+        updateButtonImage()
     }
     
     @objc private func likeButtonPressed() {
+        photo.isFavourite.toggle()
+        updateButtonImage()
         let favouritePhoto = FavouritePhoto()
         favouritePhoto.userName = photo.user.username
         favouritePhoto.createdAT = dateFormatter.string(from: photo.createdAt)
-        favouritePhoto.photoUrl = photo.urls["small"]!
+        favouritePhoto.photoUrl = photo.urls["regular"]!
+        if photo.isFavourite {
+            saveObject(photo: favouritePhoto)
+        } else {
+            deleteObject(photo: favouritePhoto)
+        }
+    }
+    
+    // MARK: RealmMethods
+    
+    private func saveObject(photo: FavouritePhoto) {
         do {
             try self.realm.write({
-                self.realm.add(favouritePhoto)
+                self.realm.add(photo)
             })
-            presentSuccessAlert()
+            presentSuccessSaveAlert()
         } catch {
             print(error.localizedDescription)
-            presentfiascoAlert()
+            presentUnsuccsessSaveAlert()
+        }
+    }
+    
+    private func deleteObject(photo: FavouritePhoto) {
+        let predicate = NSPredicate(format: "photoUrl=%@", photo.photoUrl)
+        do{
+            try realm.write({
+                realm.delete(realm.objects(FavouritePhoto.self).filter(predicate))
+            })
+            presentSuccessDeleteAlert()
+        }catch let error {
+            print(error.localizedDescription)
+            presentUnsuccsessDeleteAlert()
         }
     }
     
     // MARK: Allert Methods
-    private func presentSuccessAlert() {
+    private func presentSuccessSaveAlert() {
         let allertController = UIAlertController(title: "Photo was saved", message: "Your photo has been succesfully saved", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         allertController.addAction(okAction)
         present(allertController, animated: true, completion: nil)
     }
     
-    private func presentfiascoAlert() {
-        let allertController = UIAlertController(title: "Photo was not saved", message: "Eror 404", preferredStyle: .alert)
+    private func presentUnsuccsessSaveAlert() {
+        let allertController = UIAlertController(title: "Photo was not saved", message: "Something went wrong", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         allertController.addAction(okAction)
         present(allertController, animated: true, completion: nil)
     }
+    
+    private func presentSuccessDeleteAlert() {
+        let allertController = UIAlertController(title: "Photo was deleted", message: "Your photo has been succesfully deleted", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        allertController.addAction(okAction)
+        present(allertController, animated: true, completion: nil)
+    }
+    
+    private func presentUnsuccsessDeleteAlert() {
+        let allertController = UIAlertController(title: "Photo was not deleted", message: "Something went wrong", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        allertController.addAction(okAction)
+        present(allertController, animated: true, completion: nil)
+    }
+    
     // MARK: UI Configuration methods
     private func setUPImageView() {
         view.addSubview(imageView)
@@ -132,11 +170,17 @@ class DetailViewController: UIViewController {
         createdAtLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
     
-   private func setUpButton() {
+    private func setUpButton() {
         view.addSubview(likeButton)
-        likeButton.widthAnchor.constraint(equalToConstant: 250).isActive = true
-        likeButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        likeButton.widthAnchor.constraint(equalToConstant: 45).isActive = true
+        likeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         likeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         likeButton.topAnchor.constraint(equalTo: createdAtLabel.bottomAnchor, constant: 15).isActive = true
+    }
+    
+    private func updateButtonImage(){
+        let imageName = photo.isFavourite ? "heart.fill" : "heart"
+        let buttonImage = UIImage(systemName: imageName)
+        likeButton.setBackgroundImage(buttonImage, for: .normal)
     }
 }
