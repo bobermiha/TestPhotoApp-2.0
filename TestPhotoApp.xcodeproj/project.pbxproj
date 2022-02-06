@@ -22,6 +22,8 @@
 		F573BF4527ACF1720044218A /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF4427ACF1720044218A /* PhotosCollectionViewCell.swift */; };
 		F573BF4727AD29D60044218A /* FavouritePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF4627AD29D60044218A /* FavouritePhoto.swift */; };
 		F573BF4927AD30530044218A /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573BF4827AD30530044218A /* PhotoTableViewCell.swift */; };
+		F59CCC9627AFB45200FF57AD /* FavouritePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CCC9527AFB45100FF57AD /* FavouritePhotoViewController.swift */; };
+		F59CCC9827AFFDA800FF57AD /* WaterFallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59CCC9727AFFDA800FF57AD /* WaterFallLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		F573BF4427ACF1720044218A /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F573BF4627AD29D60044218A /* FavouritePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePhoto.swift; sourceTree = "<group>"; };
 		F573BF4827AD30530044218A /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		F59CCC9527AFB45100FF57AD /* FavouritePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePhotoViewController.swift; sourceTree = "<group>"; };
+		F59CCC9727AFFDA800FF57AD /* WaterFallLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterFallLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,8 @@
 				F573BF3627A97BF50044218A /* SecondViewController.swift */,
 				F573BF3A27A97C3E0044218A /* DetailViewController.swift */,
 				F573BF3C27AACBE40044218A /* MainTabBarController.swift */,
+				F59CCC9527AFB45100FF57AD /* FavouritePhotoViewController.swift */,
+				F59CCC9727AFFDA800FF57AD /* WaterFallLayout.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -269,7 +275,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F59CCC9827AFFDA800FF57AD /* WaterFallLayout.swift in Sources */,
 				F573BF3D27AACBE50044218A /* MainTabBarController.swift in Sources */,
+				F59CCC9627AFB45200FF57AD /* FavouritePhotoViewController.swift in Sources */,
 				F573BF1C27A97B2A0044218A /* AppDelegate.swift in Sources */,
 				F573BF3727A97BF50044218A /* SecondViewController.swift in Sources */,
 				F573BF3527A97BE30044218A /* FirstViewController.swift in Sources */,

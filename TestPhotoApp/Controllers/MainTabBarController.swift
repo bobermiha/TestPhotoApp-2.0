@@ -12,7 +12,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let firstViewController = FirstViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let firstViewController = FirstViewController(collectionViewLayout: WaterfallLayout())
         let secondViewConroller = SecondTableViewController()
         
         viewControllers = [

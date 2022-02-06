@@ -13,8 +13,8 @@ class FirstViewController: UICollectionViewController {
     private var nerworkDataManager = NetworkDataManager()
     private var timer: Timer?
     private var photos = [PhotoData]()
-    private let itemPerRow = CGFloat(2)
-    private let sectionInsets = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
+//    private let itemPerRow = CGFloat(2)
+//    private let sectionInsets = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,10 @@ class FirstViewController: UICollectionViewController {
         self.collectionView!.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.reuseID)
         collectionView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.contentInsetAdjustmentBehavior = .automatic
+        
+        if let watefallLayut = collectionViewLayout as? WaterfallLayout {
+            watefallLayut.delegate = self
+        }
     }
     
     private func setUpSearchBar(){
@@ -112,24 +116,33 @@ extension FirstViewController: UISearchBarDelegate {
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
+//
+//extension FirstViewController: UICollectionViewDelegateFlowLayout {
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let photo = photos[indexPath.item]
+//        let paddingSpace = sectionInsets.left * (itemPerRow + 1)
+//        let availableWidth = view.frame.width - paddingSpace
+//        let widthPerItem = availableWidth / itemPerRow
+//        let height = CGFloat(photo.height) * widthPerItem / CGFloat(photo.width)
+//        return CGSize(width: widthPerItem, height: height)
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return sectionInsets
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return sectionInsets.right
+//    }
+//}
 
-extension FirstViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+extension FirstViewController: WaterfallLayoutDelegate {
+    func waterfallLayout(_ layout: WaterfallLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let photo = photos[indexPath.item]
-        let paddingSpace = sectionInsets.left * (itemPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemPerRow
-        let height = CGFloat(photo.height) * widthPerItem / CGFloat(photo.width)
-        return CGSize(width: widthPerItem, height: height)
-
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.right
+        //        print("photo.width: \(photo.width) photo.height: \(photo.height)\n")
+        return CGSize(width: photo.width, height: photo.height)
     }
 }

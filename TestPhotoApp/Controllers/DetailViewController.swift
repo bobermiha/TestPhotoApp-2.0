@@ -81,6 +81,7 @@ class DetailViewController: UIViewController {
         favouritePhoto.userName = photo.user.username
         favouritePhoto.createdAT = dateFormatter.string(from: photo.createdAt)
         favouritePhoto.photoUrl = photo.urls["regular"]!
+        favouritePhoto.isFavourite = photo.isFavourite
         if photo.isFavourite {
             saveObject(photo: favouritePhoto)
         } else {
