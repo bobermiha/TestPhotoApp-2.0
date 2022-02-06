@@ -28,6 +28,13 @@ class SecondTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    
+    private func setUpTableView() {
+        tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.separatorInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        title = "Your favourite photos"
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -43,8 +50,11 @@ class SecondTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PhotoTableViewCell
         let photo = photos[indexPath.row]
-        cell.textLabel?.text = photo.userName
+        cell.photo = photo
         return cell
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
 
 }

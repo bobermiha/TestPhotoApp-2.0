@@ -33,8 +33,8 @@ class DetailViewController: UIViewController {
     private var imageView: UIImageView = {
         let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
-        photo.backgroundColor = UIColor(red: 255 / 255, green: 249 / 255, blue: 249 / 255, alpha: 1.0)
-        photo.contentMode = .scaleToFill
+        photo.backgroundColor = .white
+        photo.contentMode = .scaleAspectFit
         return photo
     }()
     

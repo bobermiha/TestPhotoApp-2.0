@@ -24,11 +24,11 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.backgroundColor = UIColor(red: 255 / 255, green: 249 / 255, blue: 249 / 255, alpha: 1.0)
-        photo.contentMode = .scaleAspectFill
+        photo.contentMode = .scaleToFill
         return photo
     }()
     
-    private func configurateConstraints() {
+    private func setUpImageView() {
         addSubview(imageView)
         imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
@@ -43,7 +43,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configurateConstraints()
+        setUpImageView()
     }
     
     required init?(coder: NSCoder) {
