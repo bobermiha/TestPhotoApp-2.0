@@ -10,8 +10,5 @@ _____
 - URLSession
 - UI сверстан с помощью NSAutoLayoutAnchor
 ____
+![alt text](https://media.giphy.com/media/BMSWJlYo5ewJRUdfeo/giphy-downsized-large.gif)
 
-![](images/0.png)     
-![](images/1.png)
-![](images/2.png)    
-![](images/3.png)
